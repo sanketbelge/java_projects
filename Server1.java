@@ -1,0 +1,43 @@
+//////////////////////////////////////////////////////////////////////////////////////
+// Function Name : Mini Messenger
+// Description   : Used to perform seand Message
+// Input         : Charecter,int.;
+// Output        : Seand Message/Recive Message
+// Date          : 07/05/2022
+// Author        : Sanket Chandrakant Belge
+//  
+/////////////////////////////////////////////////////////
+
+import java.lang.*;
+import java.net.*;
+import java.io.*;
+
+class Server1
+{
+    public static void main(String arg[]) throws Exception
+    {
+        System.out.println("Server application is running...");
+        String s1, s2;
+
+        ServerSocket ss = new ServerSocket(1100);
+        Socket s = ss.accept();
+        
+        System.out.println("Connection succesful");
+        BufferedReader brK = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        PrintStream ps = new PrintStream(s.getOutputStream());
+        while((s1 = br.readLine())!= null)
+        {
+            System.out.println("Client Says : "+s1);
+            System.out.println("Enter message for client : ");
+            s2= brK.readLine();
+            ps.println(s2);
+        }
+        s.close();
+        ss.close();
+        br.close();
+        brK.close();
+        ps.close();
+    }
+}
+//Write Clint Side application and then run.
